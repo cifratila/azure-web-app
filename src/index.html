@@ -1,5 +1,4 @@
-<html lang="en"
-    <meta charset="UTF-8">
+<html lang="en">
     <body>
         <button>Click here</button>
         <script>
@@ -32,8 +31,18 @@
             }
             
             function callNotify(title, msg, icone) {
-              new Notification(title, { body: msg, icon: icon });
-              new Audio(song).play();
+                //new Notification(title, { body: msg, icon: icon });
+                navigator.serviceWorker.ready.then((registration) => {
+                    registration.showNotification("Vibration Sample", {
+                        body: msg,
+                        icon: icon,
+                        actions: [
+                            {action: 'answer', title: 'Anwer'},
+                            {action: 'decline', title: 'Decline'}
+                        ]
+                    });
+                });
+                new Audio(song).play();
             }
         </script>
     </body>
