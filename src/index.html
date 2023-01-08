@@ -5,8 +5,8 @@
             
             const buttonEl = document.querySelector("button");
 
-            const title = "Success";
-            const msg = "Message";
+            const title = "John Doe is calling you";
+            const msg = "Hello World";
             const icon = "https://via.placeholder.com/50x50";
             const song = "notif.wav";
 
@@ -46,9 +46,10 @@
             function callNotify(title, msg, icone) {
                 //new Notification(title, { body: msg, icon: icon });
                 navigator.serviceWorker.ready.then((registration) => {
-                    registration.showNotification("Vibration Sample", {
+                    registration.showNotification(title, {
                         body: msg,
                         icon: icon,
+                        requireInteraction: true,
                         actions: [
                             {action: 'answer', title: 'Anwer'},
                             {action: 'decline', title: 'Decline'}
